@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h1 class="mb-4">Stock Data</h1>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Description</th>
+          <th>Display Symbol</th>
+          <th>Symbol</th>
+          <th>Type</th>
+          <th>MIC</th>
+          <th>FIGI</th>
+          <th>Share Class FIGI</th>
+          <th>Currency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stocks.each do |stock| %>
+          <tr>
+            <td><%= stock.description%></td>
+            <td><%= stock.display_symbol%></td>
+            <td><%= stock.symbol %></td>
+            <td><%= stock.type %></td>
+            <td><%= stock.mic %></td>
+            <td><%= stock.figi %></td>
+            <td><%= stock.share_class_figi %></td>
+            <td><%= stock.currency %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
