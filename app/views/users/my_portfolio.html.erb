@@ -1,0 +1,58 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+</head>
+
+
+<h1>My Portfolio</h1>
+<h2 class="py-5">Search Stocks</h2>
+
+  
+<form id="stockForm" action="Search_stock" accept-charset="UTF-8" method="get">
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <input type="text" name="stock" id="stock" placeholder="Stock Ticker Symbol" autofocus="autofocus" class="form-control form-control-lg">
+        </div>
+        <div class="col-sm-3">
+            <button name="button" type="submit" class="btn btn-success">
+                <i class="fa fa-search fa-2x"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<div id="stocksearchResult">
+   <%= render 'users/stocksearchResult'    %> 
+</div>
+
+
+
+
+
+<%# <script>
+$(document).ready(function() {
+    $('#stockForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting via the browser
+
+        // Serialize the form data
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: $(this).attr('action'), // The form's action URL
+            method: $(this).attr('method'), // The form's method (GET)
+            data: formData,
+            dataType: 'json', // Expecting JSON response
+            success: function(response) {
+$('#stocksearchResult').html(response);
+                console.log('Success:', response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error - replace with your own logic
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+</script> %>
+
+
+

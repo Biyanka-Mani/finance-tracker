@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users
     root 'welcome#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -7,8 +8,11 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get 'my_portfolio',to:'users#my_portfolio'
+
+
   get 'Stocks',to:'stocks#stock_symbols'
-  get 'StocksPricing',to:'stocks#quote'
+  get 'Search_stock',to:'stocks#quote'
   get 'search',to:'stocks#symbol_search'
   get '_search/:ticker_symbol',to:'stocks#search'
 

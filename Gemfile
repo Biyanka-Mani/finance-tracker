@@ -62,6 +62,7 @@ gem 'alphavantage'
 #gem 'polygonio-ruby', '~> 0.3.0'
 
 gem 'finnhub_ruby', '~> 1.1', '>= 1.1.19'
+gem "font-awesome-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

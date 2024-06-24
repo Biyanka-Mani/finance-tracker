@@ -148,6 +148,8 @@ GEM
     ffi (1.17.0)
     finnhub_ruby (1.1.19)
       typhoeus (~> 1.0, >= 1.0.1)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (4.1.0)
@@ -316,6 +318,7 @@ DEPENDENCIES
   devise-bootstrap5
   devise-i18n
   finnhub_ruby (~> 1.1, >= 1.1.19)
+  font-awesome-rails
   hirb
   importmap-rails
   jbuilder
