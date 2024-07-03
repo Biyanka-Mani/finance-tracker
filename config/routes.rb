@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_stocks,only:[:create,:destroy]
   
   devise_for :users
     root 'welcome#index'
@@ -11,8 +12,9 @@ Rails.application.routes.draw do
   get 'my_portfolio',to:'users#my_portfolio'
 
 
+
   get 'Stocks',to:'stocks#stock_symbols'
-  get 'Search_stock',to:'stocks#quote'
+  get 'search_stock',to:'stocks#quote',as: 'search_stock'
   get 'search',to:'stocks#symbol_search'
   get '_search/:ticker_symbol',to:'stocks#search'
 

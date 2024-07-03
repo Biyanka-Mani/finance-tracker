@@ -6,32 +6,60 @@ class StocksController < ApplicationController
     end
     def quote
         if params[:stock].present?
-            ticker_symbol = params[:stock]
-            begin
-                @forex_rates = FINNHUB_CLIENT.quote(ticker_symbol)        
-                # render plain:   @forex_rates
+            # ticker_symbol = params[:stock]
+            # begin
+            
+            #     @forex_rates = FINNHUB_CLIENT.quote(ticker_symbol)        
+            #     # render plain:   @forex_rates
                 
-                company_name=FINNHUB_CLIENT.company_profile2({symbol: ticker_symbol})
-                if @forex_rates.c != 0.0
-                    @stock=Stock.new(ticker:ticker_symbol,name:company_name.name,ast_price: @forex_rates.c)
-                     render 'users/my_portfolio'
-                    # respond_to do |format|
-                        
-                    #     format.html { render partial: 'users/stocksearchResult', locals: { stock: @stock } }
-                    #     format.json { render json: { message: "Success", stock: @stock } }                   
-                    #  end 
-                     
-                else
-                    flash[:alert]='Please Enter Valid Ticker To Search'
-                    redirect_to my_portfolio_path
+            #     company_name=FINNHUB_CLIENT.company_profile2({symbol: ticker_symbol})
+            #     if @forex_rates.c != 0.0
+            #         @stock=Stock.new(ticker:ticker_symbol,name:company_name.name,ast_price: @forex_rates.c)
+                   
+            #         respond_to do |format|                        
+            #             format.js{render partial:'users/stocksearchResult'}
+            #         end
+            #         #  render 'users/my_portfolio'
+            #     else
+            #         respond_to do |format|
+            #             flash[:alert]='Please Enter Valid Ticker To Search'
+            #             format.html { render 'users/my_portfolio' }
+            #             format.js{render partial:'users/stocksearchResult'}
+            #         end
+                    
+            #     end
+            # rescue => e
+            #     respond_to do |format|
+            #          flash[:alert]= "Something went wrong: #{e.message}"
+            #         format.html { render 'users/my_portfolio' }
+            #         format.js{render partial:'users/stocksearchResult'}
+            #     end
+            # end
+
+            @stock = Stock.new_lookup(params[:stock])
+            
+            if @stock
+
+                
+                if @stock.ast_price  != 0.0
+                    respond_to do |format|  
+                        format.js { render partial:'users/stocksearchResult' }
+                    end
+                else 
+                    respond_to do |format|
+                        flash[:alert]='Please Enter A Ticker'
+                        format.html { render 'users/my_portfolio' }
+                        format.js{render partial:'users/stocksearchResult'}
+                    end
+
                 end
-            rescue => e
-                flash[:alert]= "Something went wrong: #{e.message}"
-                redirect_to my_portfolio_path
+            else
+                respond_to do |format|
+                    flash[:alert]='Please Enter Valid Ticker To Search'
+                    format.html { render 'users/my_portfolio' }
+                    format.js{render partial:'users/stocksearchResult'}
+                end
             end
-        else
-            flash[:alert]='Please Enter A Ticker'
-            redirect_to my_portfolio_path
         end
     end
     def symbol_search
