@@ -38,28 +38,27 @@ class StocksController < ApplicationController
 
             @stock = Stock.new_lookup(params[:stock])
             
-            if @stock
-
-                
+           
                 if @stock.ast_price  != 0.0
                     respond_to do |format|  
                         format.js { render partial:'users/stocksearchResult' }
                     end
                 else 
                     respond_to do |format|
-                        flash[:alert]='Please Enter A Ticker'
-                        format.html { render 'users/my_portfolio' }
+                        flash.now[:alert]='Please Enter Valid Ticker To Search'
                         format.js{render partial:'users/stocksearchResult'}
                     end
 
                 end
-            else
-                respond_to do |format|
-                    flash[:alert]='Please Enter Valid Ticker To Search'
-                    format.html { render 'users/my_portfolio' }
-                    format.js{render partial:'users/stocksearchResult'}
-                end
+            
+           
+        else
+            respond_to do |format|
+                flash.now[:alert]='Please Enter Valid Ticker To Search'
+                format.js{render partial:'users/stocksearchResult'}
             end
+
+
         end
     end
     def symbol_search

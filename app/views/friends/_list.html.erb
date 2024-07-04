@@ -1,0 +1,30 @@
+<% if !@tracking_friends.empty? %>
+<div class="row ">
+    <div class="col-9">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @tracking_friends.each do |friend| %>
+                <tr>
+                <td scope="row"><%= friend.first_name %></td>
+                <td><%= friend.last_name %></td>
+                <td><%= friend.email %></td>
+                <td><%= link_to 'Remove Following', friendship_path(friend.id), data: {
+                    turbo_method: :delete,                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-warning"   %>
+                 <%= link_to "View Profile",user_path(friend.id),class:"btn btn-success"%>
+                 </td>
+                </tr>
+                <%end%>
+            </tbody>
+        </table>
+    </div> 
+</div>
+<%end%>

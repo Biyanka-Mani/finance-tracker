@@ -1,0 +1,32 @@
+<div class="results-block">
+  <%= render 'layouts/flashmessages' %>
+</div>
+
+<% if @friends %>
+   
+        <div class="card card-header results-block">
+            <table class="col-md-12">
+                <tbody>
+                <% @friends.each do |friend| %>
+                <tr>
+                    <td><strong>Email : </strong> <%= friend.email %></td>
+                    <td><strong>Name : </strong> <%= friend.full_name %></td>
+                    <td><strong>Actions :</strong> 
+                        <%= link_to "View Profile",user_path(friend.id),class:"btn btn-success"%>
+                        <% if current_user.not_friends_with?(friend.id)%>
+                            <%= link_to 'Follow Friend ?',friendships_path(user:current_user,friend:friend),class:"btn btn-success",method: :post%>
+                        <%else%>
+                        <span class="badge text-bg-primary">
+                                You are Already friends
+                        </span>
+                        <%end%>
+                    </td>
+                </tr> 
+                    
+                <%end%>
+                </tbody>
+            </table >
+                
+        </div>
+    
+<% end %>
