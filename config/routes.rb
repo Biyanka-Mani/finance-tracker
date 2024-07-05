@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   
   
   devise_for :users
-  resources :users,only:[:show]
   root 'welcome#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,12 +19,12 @@ Rails.application.routes.draw do
   get 'search_friend',to:'users#search',as: 'search_friend'
 
 
-  get 'Stocks',to:'stocks#stock_symbols'
+  # get 'Stocks',to:'stocks#stock_symbols'
  
 
-  get 'search',to:'stocks#symbol_search'
-   get '_search/:ticker_symbol',to:'stocks#search'
-
+  # get 'search',to:'stocks#symbol_search'
+  #  get '_search/:ticker_symbol',to:'stocks#search'
+  resources :users,only:[:show]
  get 'similarity',to:'stocks#similarity_index'
   # Defines the root path route ("/")
   # root "posts#index"

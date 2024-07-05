@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends ,through: :friendships
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable
 
   def stock_already_tracked?(ticker_symbol)
     stock=Stock.check_db(ticker_symbol)

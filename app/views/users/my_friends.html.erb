@@ -4,13 +4,13 @@
 
   
 
-<%= form_tag search_friend_path, remote: true, method: :get do %>
+<%= form_tag search_friend_path, remote: true, method: :get,id:"search_friends_form" do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
         <%= text_field_tag :friend, params[:friend], placeholder: "Email or Name", autofocus: true, class: "form-control form-control-lg" %>
       </div>
       <div class="col-sm-3 no-left-padding">
-        <%= button_tag type: :submit, class: "btn btn-success" do %>
+        <%= button_tag type: :submit, class: "btn btn-success " do %>
           <%= fa_icon 'search 2x' %>
         <% end %>
       </div>

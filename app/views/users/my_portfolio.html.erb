@@ -6,18 +6,27 @@
 
   
 
-<%= form_tag search_stock_path, remote: true, method: :get do %>
+<%= form_tag search_stock_path, remote: true, method: :get,id:"search_stocks_form" do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
         <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
       </div>
       <div class="col-sm-3 no-left-padding">
-        <%= button_tag type: :submit, class: "btn btn-success" do %>
-          <%= fa_icon 'search 2x' %>
+        <%= button_tag type: :submit, class: "btn btn-success search-button", id: "search_button" do %>
+          <span id="search_icon"><%= fa_icon 'search 2x' %></span>
+          <span id="loading_spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
         <% end %>
       </div>
     </div>
   <% end %>
+<div id="myModal" class="modal">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 <div id="stocksearchResult">
    
 </div>
